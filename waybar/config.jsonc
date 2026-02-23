@@ -1,0 +1,187 @@
+{ 
+    "layer": "top",
+    "position": "bottom",
+    // leave 0 for autoscaling 
+    "height": 5,
+    "width": 0,
+    "spacing": 0,
+    // margins around bar
+    "margin-top": 0,
+    "margin-bottom": 8,
+    "margin-left": 0,
+    "margin-right": 0,
+    "mode": "dock",
+	
+    	"modules-left": ["niri/workspaces", "custom/arrow_right_1", "niri/window"],
+    	"modules-right": [
+	    "custom/arrow_left_1",
+	    "cpu", 
+	    "custom/arrow_left_2",
+	    "memory", 
+	    "custom/arrow_left_3",
+	    "temperature", 
+	    "custom/arrow_left_4",
+	    "wireplumber", 
+	    "custom/arrow_left_5",
+	    "backlight", 
+	    "custom/arrow_left_6",
+	    "tray", 
+	    "custom/arrow_left_7",
+	    "battery",
+	    "custom/arrow_left_8",
+	    "clock#date",
+	    "custom/arrow_left_9",
+	    "clock#time"
+	],
+	
+	// Left Modues
+	"niri/workspaces": {
+	    // Maybe look into changing this with defaults workspaces etc
+	    "format": "{index}"
+
+	},
+	"niri/window": {
+		"format": "{app_id}",
+		"icon": true,
+		"icon-size": 16,
+		"max-length": 30,
+		"tooltip": false
+	},
+
+	// Right Modules
+	"cpu": {
+ 	   "format": "  {usage}%",
+ 	   "tooltip": true,
+ 	   "tooltip-format": "Uso de CPU: {usage}%\nNúcleos: {cores}"
+ 	},
+  	"memory": {
+            "interval": 30,
+            "format": "  {used:0.2f}Gb",
+            "on-click": "alacritty -e btop"
+	},
+  	"disk": {
+    	    "format": "  {free}",
+    	    "tooltip": true,
+    	    "tooltip-format": "Espacio libre: {free} / {total} ({percentage_free}%)"
+  	},
+  	"temperature": {
+            "interval": 4,
+            "critical-threshold": 80,
+            "format-critical": "  {temperatureC}°C",
+            "format": " {temperatureC}°C"
+        },	
+	"network": {
+            "format-wifi": " {essid}",
+            "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+            "format-linked": "{ifname} (No IP) ",
+            "format": "",
+            "format-disconnected": "",
+            "format-alt": "{ifname}: {ipaddr}/{cidr}",
+            "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
+            "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
+            "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
+            "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}"
+        },
+	"wireplumber": {
+            "on-click": "pavucontrol",
+            "on-click-right": "amixer sset Master toggle 1>/dev/null",
+            //on-click: "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            //on-scroll-down: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04+";
+            //on-scroll-up: "${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.04-";
+            "format": "{icon} {volume}%",
+            "format-muted": " ",
+            "format-source": "",
+            "format-source-muted": "",
+            //"format-muted": "<span foreground='#fab387'> </span>",
+            //"format-icons": [ "<span foreground='#fab387'></span>" ]
+            "format-icons": {
+                "headphone": " ",
+                "hands-ree": " ",
+                "headset": " ",
+                "phone": " ",
+                "portable": " ",
+                "car": " ",
+                "default": [" ", " ", " "]
+            }
+	},
+    	"backlight": {
+		"format": "{icon}  {percent}%",
+    		"format-icons": ["", "", "", "", "", "", "", "", ""],
+		"on-scroll-down": "brightnessctl s 5%-",
+		"on-scroll-up": "brightnessctl s +5%"
+	},
+    	"tray": {
+    	},
+	"battery": {
+            "interval": 2,
+                "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{icon} {capacity}%",
+            "format-charging": " {capacity}%",
+            "format-plugged": " {capacity}%",
+            "format-icons": [
+                "  ",
+                "  ",
+                "  ",
+                "  ",
+                "  "
+            ]
+	},
+	"clock#date": {
+    	    "interval": 60,
+    	    "format": " {:%a, %b %d %Y}",
+	    "format-alt": " {:%d/%m/%Y}"
+	},
+	"clock#time": {
+    	    "interval": 60,
+    	    "format": " {:%I:%M}",
+	    "format-alt": " {:%H:%M}"
+	},
+
+
+	// Arrows for styling 
+	"custom/arrow_right_1": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_1": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_2": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_3": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_4": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_5": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_6": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_7": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_8": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/arrow_left_9": {
+		"format": "",
+		"tooltip": false
+	}
+
+}

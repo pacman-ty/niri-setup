@@ -1,0 +1,76 @@
+/* - Genera rules for visible modules -- */
+#cpu,
+#memory,
+#disk,
+#temperature,
+#wireplumber,
+#backlight, 
+#tray,
+#battery,
+#clock {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
+  transition: none;
+}
+
+
+/* Separation to the right */
+#temperature,
+#backlight,
+#clock {
+  margin-right: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Separation to the left */
+#cpu,
+#wireplumber,
+#tray {
+  margin-left: 5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/* Colours */
+#cpu {
+  background: #96CDFB;
+}
+
+#memory {
+  background: #DDB6F2;
+}
+
+#disk {
+  background: #F5C2E7;
+}
+
+#temperature {
+  background: #F8BD96;
+}
+
+#wireplumber {
+  background: #96CDFB;
+}
+
+#backlight {
+  background: #DDB6F2;
+}
+
+#tray {
+  background: #F8BD96;
+}
+
+#battery {
+  background: #F5C2E7;
+}
+
+#clock {
+  background: #DDB6F2;
+}
+
+
